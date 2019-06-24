@@ -1,0 +1,38 @@
+# HOME - BUSCA
+modal_home:               '#checkoutAbandon'
+button_modal_x:           '.btn-close-modal'
+text_origem:              '#inptorigin'
+text_destino:             '#inptdestination'
+lista_destinos:           '#ui-autocomplete'
+lista_origem:             '#ui-autocomplete'
+button_dia_ida:           '.pika-button.pika-day.btn-26102019' # deixar data parametrizavel
+button_dia_volta:         '.pika-button.pika-day.btn-26112019' # deixar data parametrizavel
+button_proximo_mes:       '.pika-next'
+text_data_ida:            '#departureDate'
+data_volta:               '#arrivalDate'
+bt_avanca_calendario:     '.pika-next'
+button_pesquisar:         '.btn-default.btn-submit'
+btn_comprar:              '.btn-checkin'
+
+# CHECKOUT
+text_email_contato:      '#my-account_email'
+text_nome:               '#nome_0'
+text_sobrenome:          '#lastName_0'
+text_nascimento:          '#birth_0'
+cartao_bandeira:          '#flag_card'
+cartao_numero:            '#number_card-0'
+cartao_mes:               '#month-0'
+cartao_ano:               '#year-0'
+cartao_nome:              '#name_card-0'
+cartao_cpf:               '#cpf_card-0'
+cartao_cvv:               '#codesecure_card-0'
+
+text_cep:                '#zipcode-0'
+text_endereco_numero:    '#number_address-0'
+text_email:              '#contact_email'
+text_email_confirma:     '#contact_email_confirm'
+text_telefone:           '#contact_phonenumber_0'
+button_termos:            '#accept-checkout'
+
+# CONFIRMACAO
+button_finalizar:         '.btn-default.ng-scope'

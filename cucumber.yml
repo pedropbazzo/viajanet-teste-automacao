@@ -1,0 +1,1 @@
+default: PLATFORM=chrome SCREENSHOT_PATH=screenshots/chrome/ --format pretty --format json --out=data/report/report.json
