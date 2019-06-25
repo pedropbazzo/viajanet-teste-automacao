@@ -1,19 +1,25 @@
 class Utils
     
-    def fechar_modal
+    def fechar_modal # Fechar modal da home que surge logo no início
     within(ELEMENTS['modal_home']) do
         find(ELEMENTS['button_modal_x']).click 
         end
     end
 
-    def pesquisar(destino)
+    def mudar_aba # Ao clicar em comprar, site lança nova aba e é preciso alterar foco
+        result = page.driver.browser.window_handles.last
+        page.driver.browser.switch_to.window(result)
+        sleep 1
+    end
+
+    def pesquisar(destino) # Método para unificar demais métodos no steps
         fechar_modal
         send("preencher_destino_#{destino}")
         preencher_data
         selecionar_voo
     end
 
-    def preencher_data
+    def preencher_data # Preencher datas 
         find(ELEMENTS['text_data_ida']).click
         3.times do # TODO - por enquanto não parametrizável - seleciona o mês de outubro (3 meses pra frente)
             find(ELEMENTS['button_proximo_mes']).click
@@ -23,33 +29,25 @@ class Utils
     end
 
     def preencher_destino_nacional
-        $destinoNacional = Massa['Destinos_Nacionais'].sample
-        find(ELEMENTS['text_destino']).set($destinoNacional)
+        find(ELEMENTS['text_destino']).set(Massa['Destinos_Nacionais'].sample)
         find(ELEMENTS['text_destino']).send_keys(:enter) if has_selector?(ELEMENTS['lista_destinos'], visible: true)
     end
 
     def preencher_destino_internacional
-        $destinoInternacional = Massa['Destinos_Internacionais'].sample
-        find(ELEMENTS['text_destino']).set($destinoInternacional)
+        find(ELEMENTS['text_destino']).set(Massa['Destinos_Internacionais'].sample)
     end
 
-    def selecionar_voo
+    def selecionar_voo # só clica no botão comprar na tela de resultados
         find(ELEMENTS['button_pesquisar']).click
-        assert_selector(ELEMENTS['btn_comprar'], wait: 60)
-        first(ELEMENTS['btn_comprar']).click
+        assert_selector(ELEMENTS['button_comprar'], wait: 60)
+        first(ELEMENTS['button_comprar']).click
         find('.md-close').click if has_selector?('.md-content')
     end
 
-    def mudar_aba
-        result = page.driver.browser.window_handles.last
-        page.driver.browser.switch_to.window(result)
-        sleep 1
-      end
-
-    def preencher_dados_compra
+    def preencher_dados_compra # preenche os campos da tela checkout
         Utils.new.mudar_aba
         assert_no_selector('.loader-container.ng-scope', wait: 15)
-        cadastroData = INFO[:dados_cadastro]
+        cadastroData = INFO[:dados_cadastro] # puxa dados da massa
         email = cadastroData[:email]
         find(ELEMENTS['text_email_contato']).set(email)
         find(ELEMENTS['text_nome']).set(cadastroData[:nome])
@@ -79,7 +77,7 @@ class Utils
         find(ELEMENTS['button_finalizar']).click
     end
 
-    def assertReserva
+    def assertReserva # validação que reserva foi realizada
         assert_no_selector('.loader-container.ng-scope', wait: 30)
         assert_text('Reserva em processamento.')    
     end

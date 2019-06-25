@@ -9,10 +9,8 @@ button_dia_ida:           '.pika-button.pika-day.btn-26102019' # deixar data par
 button_dia_volta:         '.pika-button.pika-day.btn-26112019' # deixar data parametrizavel
 button_proximo_mes:       '.pika-next'
 text_data_ida:            '#departureDate'
-data_volta:               '#arrivalDate'
-bt_avanca_calendario:     '.pika-next'
 button_pesquisar:         '.btn-default.btn-submit'
-btn_comprar:              '.btn-checkin'
+button_comprar:           '.btn-checkin'
 
 # CHECKOUT
 text_email_contato:      '#my-account_email'
