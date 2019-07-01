@@ -79,7 +79,7 @@ class Utils
 
     def assertReserva # validação que reserva foi realizada
         assert_no_selector('.loader-container.ng-scope', wait: 30)
-        assert_text('Reserva em processamento.')    
+        assert_text('Reserva em processamento.') 
     end
     
 end

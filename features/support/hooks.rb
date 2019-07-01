@@ -3,15 +3,15 @@ Before do
 end
 
 After do |scn|
-    file_name = scn.name.gsub(' ', '_').downcase!
-    target = "data/screenshots/#{file_name}.png"
+    scenario = scn.name.gsub(' ', '_').downcase!
+    executionTime = Time.new.strftime('%Y-%d-%m %H:%M:%S')
     if scn.failed?
-      page.save_screenshot(target)
-      embed(target, 'image/png', 'Screenshot')
+      target = "data/screenshots/FAILED_#{scenario}_#{executionTime}.png"
     else
-      page.save_screenshot(target)
-      embed(target, 'image/png', 'Screenshot')
+      target = "data/screenshots/SUCCESS_#{scenario}_#{executionTime}.png"
     end
+    page.save_screenshot(target)
+    embed(target, 'image/png', 'Screenshot')
     page.driver.quit
 end
 
